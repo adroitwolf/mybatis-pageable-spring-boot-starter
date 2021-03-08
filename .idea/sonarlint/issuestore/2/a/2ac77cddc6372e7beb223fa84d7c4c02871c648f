@@ -1,0 +1,12 @@
+
+Q	java:S125:"<This block of commented-out lines of code should be removed.(®µ”Ð
+œ
+java:S1186F"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÜÆÚÚýÿÿÿÿ
+G
+java:S1135"2Complete the task associated to this TODO comment.(£°§\
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(÷µêÀ
+o
+java:S22933"YReplace the type specification in this constructor call with the diamond operator ("<>").(±„±Â
+V	java:S125-"<This block of commented-out lines of code should be removed.(Êöä°øÿÿÿÿ
+Q
+java:S3740""/Provide the parametrized type for this generic.(ú“í¢ÿÿÿÿÿ8¨¬û€/
