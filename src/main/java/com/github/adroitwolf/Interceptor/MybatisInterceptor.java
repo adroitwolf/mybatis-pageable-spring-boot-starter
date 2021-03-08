@@ -34,31 +34,27 @@ public class MybatisInterceptor implements Interceptor {
         ResultHandler resultHandler = (ResultHandler) args[3];
 
 
-        if(rowBounds == RowBounds.DEFAULT){
-            // 直接放行
+        if(rowBounds instanceof  IRowBounds){
 
-            return invocation.proceed();
+            // 我改成我自己的rowBounds;
+            IRowBounds iRowBounds = (IRowBounds) rowBounds;
+
+            // 这里直接查询出来，不转下面的拦截器了
+            List<Object> queryPageResult = ExecutorUtils.getQueryPageResult(executor, ms, param, iRowBounds, resultHandler);
+
+            IPage<Object> queryRs = new IPage<>(queryPageResult);
+
+
+            int total = ExecutorUtils.getCountResult(ms,param);
+
+            queryRs.setTotal(total);
+
+            return queryRs;
         }
 
-        //说明我自己自定义了,不用你这个了
+        // 直接放行
+        return invocation.proceed();
 
-        // 我改成我自己的rowBounds;
-        IRowBounds iRowBounds = (IRowBounds) rowBounds;
-
-        // 这里直接查询出来，不转下面的拦截器了
-        List<Object> queryPageResult = ExecutorUtils.getQueryPageResult(executor, ms, param, iRowBounds, resultHandler);
-
-        IPage<Object> queryRs = new IPage<Object>(queryPageResult);
-
-
-        int total = ExecutorUtils.getCountResult(ms,param);
-
-        queryRs.setTotal(total);
-
-       /* List<Object> countRs = executor.query(countMs, param, RowBounds.DEFAULT, resultHandler);
-        int count = ((Number)  countRs.get(0)).intValue();*/
-
-        return queryRs;
     }
 
     @Override

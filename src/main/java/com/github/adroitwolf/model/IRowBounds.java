@@ -35,8 +35,4 @@ public class IRowBounds  extends RowBounds {
     }
 
 
-
-    public String unionSql(){
-        return " limit " + this.offset + "," + this.limit;
-    }
 }

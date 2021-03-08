@@ -1,9 +1,13 @@
 
-{
-java:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¨³ªŒüÿÿÿÿ
 O
-java:S1118":Add a private constructor to hide the implicit public one.(åò®`
+java:S1118":Add a private constructor to hide the implicit public one.(åò®`
+U	java:S106%"9Replace this use of System.out or System.err by a logger.(á˜Û–8Î‘„„/
+p
+java:S1128
+"NRemove this unused import 'org.apache.ibatis.scripting.defaults.RawSqlSource'.(ùëÍùÿÿÿÿ8Èè¤„/
 G
-java:S1135"2Complete the task associated to this TODO comment.(£°§\
-N	java:S106&"9Replace this use of System.out or System.err by a logger.(á˜Û–
-Q	java:S125'"<This block of commented-out lines of code should be removed.(²Ã©Ä
+java:S1135"2Complete the task associated to this TODO comment.(£°§\
+Q
+java:S3740"/Provide the parametrized type for this generic.(À×€»ıÿÿÿÿ8œÉ“ı€/
+e
+java:S20954"HUse try-with-resources or close this "Connection" in a "finally" clause.(úàÔŸ8€ÿ ‚/

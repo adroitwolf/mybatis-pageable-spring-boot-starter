@@ -1,9 +1,7 @@
 
-e
-java:S1128"HRemove this unused import 'org.apache.ibatis.session.SqlSessionFactory'.(ÚÖ¦©8Õøû€/
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Õøû€/
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Õøû€/
+X	java:S125&"<This block of commented-out lines of code should be removed.(çï§‰8‘ëòü€/
 N
-java:S1135"2Complete the task associated to this TODO comment.(£°§\8ô›âû€/
+java:S1135"2Complete the task associated to this TODO comment.(£°§\8¤—àü€/
+e
+java:S1128
+"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8áÍìü€/

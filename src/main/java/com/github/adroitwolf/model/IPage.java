@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author adroitwolf
@@ -21,6 +22,9 @@ public class IPage<T> extends ArrayList<T>  {
 
     private int total;
 
+    public List<T> getList() {
+        return this;
+    }
 
 
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
+import org.apache.ibatis.scripting.defaults.RawSqlSource;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -30,13 +31,13 @@ public class ExecutorUtils {
         //我直接重写sql
         BoundSql boundSql = ms.getSqlSource().getBoundSql(ms);
         // 分页查询
-        BoundSql newBoundSql = new BoundSql(ms.getConfiguration(), getPageableSql(boundSql.getSql(),iRowBounds), boundSql.getParameterMappings(), boundSql.getParameterObject());
+        BoundSql newBoundSql = new BoundSql(ms.getConfiguration(), SQLUtils.unionPageSql(boundSql.getSql(),iRowBounds), boundSql.getParameterMappings(), boundSql.getParameterObject());
+
+
+        System.out.println(newBoundSql.getSql());
 
         //重新创建 ms
         MappedStatement newMs = builderNewMappedStatement(ms, newBoundSql);
-
-        System.out.println(newBoundSql.getSql());
-//        args[0] = newMs;
 
         return  executor.query(newMs, param, RowBounds.DEFAULT, resultHandler);
 
@@ -74,7 +75,8 @@ public class ExecutorUtils {
     // 创建新的ms
     private static MappedStatement builderNewMappedStatement(MappedStatement ms, BoundSql newBoundSql){
 
-        MappedStatement.Builder msBuilder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId(), new MyBoundSource(newBoundSql), ms.getSqlCommandType());
+
+        MappedStatement.Builder msBuilder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId(),new MyBoundSource(newBoundSql) , ms.getSqlCommandType());
 
         msBuilder.resource(ms.getResource());
 
@@ -115,27 +117,11 @@ public class ExecutorUtils {
     }
 
 
-    private static String getPageableSql(String osql,IRowBounds iRowBounds){
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(osql);
-
-        sql.append(iRowBounds.unionSql());
-
-        return  sql.toString();
-    }
-
     private static  String getCountSql(String sql){
-        StringBuffer sb=new StringBuffer("select count(*) from ");  //拼接后面的
+        StringBuilder builder=new StringBuilder("select count(*) from (");  //拼接后面的
 
-        sql=sql.toLowerCase(); // 小写用于查询
-
-        if(sql.lastIndexOf("order")>sql.lastIndexOf(")")){
-
-            sb.append(sql.substring(sql.indexOf("from")+4, sql.lastIndexOf("order")));
-        }else{
-            sb.append(sql.substring(sql.indexOf("from")+4));
-        }
-        return sb.toString();
+        builder.append(sql);
+        builder.append(" ) as t ");
+        return builder.toString();
     }
 }

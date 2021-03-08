@@ -3,4 +3,5 @@ com\github\adroitwolf\util\ExecutorUtils.class
 com\github\adroitwolf\config\InterceptorConfig.class
 com\github\adroitwolf\Interceptor\MybatisInterceptor.class
 com\github\adroitwolf\model\IRowBounds.class
+com\github\adroitwolf\util\SQLUtils.class
 com\github\adroitwolf\model\IPage.class
